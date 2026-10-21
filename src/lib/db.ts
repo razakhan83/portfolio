@@ -1,9 +1,13 @@
-import dns from "dns";
+import * as dns from "node:dns";
 import mongoose from "mongoose";
 
 // Set reliable DNS servers for Node SRV record resolution
 try {
-  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+  const setServers =
+    dns.setServers ?? (dns as unknown as { default?: { setServers?: typeof dns.setServers } }).default?.setServers;
+  if (typeof setServers === "function") {
+    setServers(["8.8.8.8", "1.1.1.1"]);
+  }
 } catch {
   // Ignore if not supported in environment
 }
@@ -53,6 +57,16 @@ export async function connectDB(): Promise<typeof mongoose> {
 
   if (!cached.promise) {
     cached.uri = uri;
+    try {
+      const setServers =
+        dns.setServers ?? (dns as unknown as { default?: { setServers?: typeof dns.setServers } }).default?.setServers;
+      if (typeof setServers === "function") {
+        setServers(["8.8.8.8", "1.1.1.1"]);
+      }
+    } catch {
+      // Ignore
+    }
+
     const opts: mongoose.ConnectOptions = {
       bufferCommands: false,
       serverSelectionTimeoutMS: 5000,
@@ -65,9 +79,28 @@ export async function connectDB(): Promise<typeof mongoose> {
 
   try {
     cached.conn = await cached.promise;
-  } catch (error) {
+  } catch (error: unknown) {
     cached.promise = null;
     cached.conn = null;
+    const isSrvError =
+      error instanceof Error &&
+      (error.message.includes("querySrv") ||
+        ("code" in error && (error as { code?: string }).code === "ECONNREFUSED"));
+    if (isSrvError) {
+      try {
+        const setServers =
+          dns.setServers ?? (dns as unknown as { default?: { setServers?: typeof dns.setServers } }).default?.setServers;
+        if (typeof setServers === "function") {
+          setServers(["8.8.8.8", "1.1.1.1"]);
+        }
+      } catch {}
+      cached.promise = mongoose.connect(uri, {
+        bufferCommands: false,
+        serverSelectionTimeoutMS: 5000,
+      });
+      cached.conn = await cached.promise;
+      return cached.conn;
+    }
     throw error;
   }
 
