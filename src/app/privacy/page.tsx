@@ -3,6 +3,16 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy · Ahmed Raza",
+  description:
+    "This site collects no data directly. Contact happens through WhatsApp and email. Messages sent by visitors are used only to reply. No data is sold or shared.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    title: "Privacy · Ahmed Raza",
+    description:
+      "This site collects no data directly. Contact happens through WhatsApp and email. Messages sent by visitors are used only to reply. No data is sold or shared.",
+  },
 };
 
 export default function PrivacyPage() {

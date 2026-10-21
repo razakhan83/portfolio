@@ -3,6 +3,16 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Terms · Ahmed Raza",
+  description:
+    "Content on this site belongs to Ahmed Raza. Project names and brands belong to their owners. Service details are confirmed individually before any work starts.",
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    title: "Terms · Ahmed Raza",
+    description:
+      "Content on this site belongs to Ahmed Raza. Project names and brands belong to their owners. Service details are confirmed individually before any work starts.",
+  },
 };
 
 export default function TermsPage() {

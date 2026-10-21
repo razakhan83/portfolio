@@ -21,8 +21,29 @@ export default async function Home() {
     getProcessSteps(),
   ]);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const sameAsLinks = [
+    settings.githubUrl,
+    settings.linkedinUrl,
+    settings.whatsappUrl,
+  ].filter(Boolean);
+
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Ahmed Raza",
+    jobTitle: "MERN Stack Developer & E-Commerce Specialist",
+    email: settings.email || "123raza83@gmail.com",
+    url: siteUrl,
+    sameAs: sameAsLinks,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       <Hero settings={settings} />
       <Skills skills={skills} />
       <Projects projects={projects} />
