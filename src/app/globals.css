@@ -1,2 +1,26 @@
 @import "tailwindcss";
 @import "./morph.css";
+
+@theme {
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+
+  --color-background: #F5F5DC;
+  --color-surface: #FFFEF7;
+  --color-primary: #008080;
+  --color-deep: #004C4C;
+  --color-muted: #5A6B62;
+  --color-border: #DED9BE;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-deep);
+    font-family: var(--font-body), sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), sans-serif;
+  }
+}

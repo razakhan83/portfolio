@@ -5,7 +5,7 @@ Work top to bottom. One task at a time. Every task ends with: `npm run build` cl
 ## Phase 0: Project setup
 - [x] TASK-001: Scaffold Next.js (App Router, TypeScript, Tailwind v4) in a fresh repo. Add `.env.example` and `.gitignore` (`.env.local` ignored). Acceptance: dev server runs, empty page loads.
 - [x] TASK-002: Install the agent skills (exact commands and picks in README step 3): morph-ui, the Matt Pocock set (setup-matt-pocock-skills, grill-me, tdd, diagnosing-bugs, code-review), vercel-react-best-practices, frontend-design, shadcn, emil-design-eng. Run `/setup-matt-pocock-skills` once (issue tracker: local files, docs: repo root). Copy `morph.css` next to `globals.css`, import it AFTER Tailwind v4. Acceptance: the skill folders exist in the project, the setup skill has run, and a test Morph component (Tabs) renders on a scratch page, then the scratch page is removed.
-- [ ] TASK-003: Install and wire fonts: Cabinet Grotesk (Fontshare) for headings, Plus Jakarta Sans (Google) for body via next/font, `display: swap`. Set the colour tokens from DESIGN.md as Tailwind v4 theme variables. Acceptance: a test heading uses Cabinet Grotesk in deep teal on beige.
+- [x] TASK-003: Install and wire fonts: Cabinet Grotesk (Fontshare) for headings, Plus Jakarta Sans (Google) for body via next/font, `display: swap`. Set the colour tokens from DESIGN.md as Tailwind v4 theme variables. Acceptance: a test heading uses Cabinet Grotesk in deep teal on beige.
 - [ ] TASK-004: Install shadcn/ui (only the components the admin needs: button, input, label, table, dialog, sheet, switch, toast/sonner, alert-dialog). Acceptance: one shadcn button renders in the admin shell.
 
 ## Phase 1: Database and content layer
