@@ -4,6 +4,9 @@ import "./globals.css";
 import { getSettings } from "@/lib/content";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Cursor from "@/components/Cursor";
+import { RouteTransition } from "@/components/morph/route-transition";
+import { SkipOnScroll } from "@/components/morph/skip-on-scroll";
 
 export const metadata: Metadata = {
   title: "Ahmed Raza · Portfolio",
@@ -28,9 +31,11 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${fontBody.variable} ${fontHeading.variable}`}>
       <body className="antialiased min-h-screen flex flex-col bg-background text-deep font-body">
+        <SkipOnScroll />
+        <Cursor />
         <Header wordmark={settings.wordmark} socials={socials} />
         <main id="main-content" className="flex-1">
-          {children}
+          <RouteTransition>{children}</RouteTransition>
         </main>
         <Footer wordmark={settings.wordmark} socials={socials} />
       </body>

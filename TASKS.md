@@ -23,7 +23,7 @@ Work top to bottom. One task at a time. Every task ends with: `npm run build` cl
 - [x] TASK-014: Process section: vertical numbered steps (01 to 04) from getProcessSteps(). Not cards in a row. Acceptance: 4 steps show in order.
 - [x] TASK-015: Contact section (deep teal band, beige text) + footer: heading, text, WhatsApp button, email link, all from getSettings(). Acceptance: buttons link correctly.
 - [x] TASK-016: /privacy and /terms pages with the PRD text, same header and footer, Morph Page Transition crossfade between public routes. Acceptance: both pages render, one h1 each.
-- [ ] TASK-017: Animation pass: heading wipe reveals (Motion whileInView, once), fade-up sections with small stagger, custom teal cursor dot (pointer-fine only, native cursor stays visible), hover states 100 to 150ms ease-out, buttons active:scale-[0.98], prefers-reduced-motion disables wipe, morph and cursor. Acceptance: no animation uses anything except transform and opacity.
+- [x] TASK-017: Animation pass: heading wipe reveals (Motion whileInView, once), fade-up sections with small stagger, custom teal cursor dot (pointer-fine only, native cursor stays visible), hover states 100 to 150ms ease-out, buttons active:scale-[0.98], prefers-reduced-motion disables wipe, morph and cursor. Acceptance: no animation uses anything except transform and opacity.
 
 ## Phase 3: Admin auth
 - [ ] TASK-018: Login page `/admin/login`: email + password form (shadcn), zod validation, bcrypt check against the admins collection, JWT (AUTH_SECRET) in httpOnly, secure, sameSite=lax cookie, 7 days. Failed attempts limited (5 per 10 minutes per IP). Acceptance: correct login reaches /admin, wrong password shows a clear error.

@@ -1,5 +1,9 @@
+"use client";
+
+import { motion } from "motion/react";
 import type { SiteSettings } from "@/lib/content";
 import { GitHubIcon, LinkedInIcon, WhatsAppIcon, MailIcon } from "./icons";
+import { fadeInUp } from "@/lib/motion";
 
 export interface ContactProps {
   settings: SiteSettings;
@@ -14,8 +18,14 @@ export default function Contact({ settings }: ContactProps) {
     "Have a store to build, or ads to run? Message me on WhatsApp and I will reply with a clear plan and a fair price.";
 
   return (
-    <section id="contact" className="w-full bg-deep py-20 sm:py-28 text-background">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col items-start text-left">
+    <section id="contact" className="w-full bg-deep py-20 sm:py-28 text-background overflow-hidden">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+        className="max-w-6xl mx-auto px-6 flex flex-col items-start text-left"
+      >
         {/* Contact Heading */}
         <h2 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-background mb-6">
           {contactHeading.endsWith(".") ? (
@@ -105,7 +115,7 @@ export default function Contact({ settings }: ContactProps) {
             </a>
           )}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
