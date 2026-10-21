@@ -11,6 +11,7 @@ try {
 interface MongooseCache {
   conn: typeof mongoose | null;
   promise: Promise<typeof mongoose> | null;
+  uri?: string;
 }
 
 declare global {
@@ -20,6 +21,7 @@ declare global {
 const cached: MongooseCache = global.mongooseCache ?? {
   conn: null,
   promise: null,
+  uri: undefined,
 };
 
 if (!global.mongooseCache) {
@@ -35,13 +37,25 @@ export async function connectDB(): Promise<typeof mongoose> {
     );
   }
 
-  if (cached.conn) {
+  // If URI changed or connection was closed, reset cache
+  if (cached.uri !== uri || (cached.conn && cached.conn.connection.readyState === 0)) {
+    if (cached.conn) {
+      await cached.conn.disconnect().catch(() => {});
+    }
+    cached.conn = null;
+    cached.promise = null;
+    cached.uri = uri;
+  }
+
+  if (cached.conn && cached.conn.connection.readyState === 1) {
     return cached.conn;
   }
 
   if (!cached.promise) {
+    cached.uri = uri;
     const opts: mongoose.ConnectOptions = {
       bufferCommands: false,
+      serverSelectionTimeoutMS: 5000,
     };
 
     cached.promise = mongoose.connect(uri, opts).then((mongooseInstance) => {
@@ -53,6 +67,7 @@ export async function connectDB(): Promise<typeof mongoose> {
     cached.conn = await cached.promise;
   } catch (error) {
     cached.promise = null;
+    cached.conn = null;
     throw error;
   }
 
