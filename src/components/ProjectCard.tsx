@@ -81,7 +81,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               )}
             </div>
 
-            <p className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-primary mb-3">
+            <p className="text-sm font-semibold tracking-wider uppercase text-primary mb-3">
               {project.stackLine}
             </p>
 
@@ -91,14 +91,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
             {/* Links row: clicking links must NOT trigger the dialog */}
             {(project.githubUrl || project.liveUrl) && (
-              <div className="flex items-center gap-3 pt-4 border-t border-border/60 text-deep">
+              <div className="flex items-center gap-2 pt-4 border-t border-border/60 text-deep">
                 {project.liveUrl && (
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium hover:text-primary transition-colors duration-150 p-1 -ml-1 rounded"
+                    className="min-h-[44px] inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary transition-colors duration-150 px-2.5 py-2 -ml-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     aria-label={`Visit live site for ${project.title}`}
                   >
                     <span>Live Site</span>
@@ -111,10 +111,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="p-1 hover:text-primary transition-colors duration-150 rounded"
+                    className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 hover:text-primary transition-colors duration-150 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     aria-label={`GitHub repository for ${project.title}`}
                   >
-                    <GitHubIcon className="w-4 h-4" />
+                    <GitHubIcon className="w-5 h-5" />
                   </a>
                 )}
               </div>
@@ -160,7 +160,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Stack Line */}
-        <p className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-primary mb-6">
+        <p className="text-sm font-semibold tracking-wider uppercase text-primary mb-6">
           {project.stackLine}
         </p>
 
@@ -235,7 +235,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary text-[#FFFEF7] font-semibold text-sm px-6 py-2.5 rounded-lg hover:bg-deep transition-all duration-150 inline-flex items-center gap-1.5 shadow-none"
+                className="bg-primary text-[#FFFEF7] font-semibold text-sm px-6 py-3 min-h-[44px] rounded-lg hover:bg-deep transition-all duration-150 inline-flex items-center justify-center gap-2 shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <span>Visit Live Store</span>
                 <ArrowUpRightIcon className="w-4 h-4" />
@@ -246,7 +246,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-border text-deep hover:text-primary hover:border-primary transition-all duration-150 font-semibold text-sm px-5 py-2.5 rounded-lg inline-flex items-center gap-2"
+                className="border border-border text-deep hover:text-primary hover:border-primary transition-all duration-150 font-semibold text-sm px-5 py-3 min-h-[44px] rounded-lg inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <GitHubIcon className="w-4 h-4" />
                 <span>View Source</span>

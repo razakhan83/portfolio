@@ -148,7 +148,7 @@ export function MorphDialogTrigger({
             show();
           }
         }}
-        className={`block w-full cursor-pointer text-left outline-none ${className}`}
+        className={`block w-full cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-xl ${className}`}
       >
         {children}
       </div>
@@ -219,9 +219,9 @@ export function MorphDialogContent({
                 type="button"
                 aria-label="Close dialog"
                 onClick={close}
-                className="absolute top-4 right-4 inline-flex size-8 cursor-pointer items-center justify-center rounded-lg text-muted hover:text-deep hover:bg-border/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary z-10"
+                className="absolute top-4 right-4 inline-flex size-11 min-w-[44px] min-h-[44px] cursor-pointer items-center justify-center rounded-lg text-muted hover:text-deep hover:bg-border/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary z-10"
               >
-                <X className="size-4" />
+                <X className="size-5" />
               </button>
             </div>
           </ViewTransition>

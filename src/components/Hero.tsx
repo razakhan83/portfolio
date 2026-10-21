@@ -55,7 +55,7 @@ export default function Hero({ settings }: HeroProps) {
               <a
                 href={cvHref}
                 download
-                className="bg-primary text-[#FFFEF7] font-semibold text-sm sm:text-base px-8 py-3.5 rounded-lg hover:bg-deep transition-all duration-150 active:scale-[0.98] inline-flex items-center justify-center tracking-wide shadow-none"
+                className="bg-primary text-[#FFFEF7] font-semibold text-sm sm:text-base px-8 py-3.5 min-h-[44px] rounded-lg hover:bg-deep transition-all duration-150 active:scale-[0.98] inline-flex items-center justify-center tracking-wide shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 DOWNLOAD CV
               </a>
@@ -63,7 +63,7 @@ export default function Hero({ settings }: HeroProps) {
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-primary text-primary hover:bg-primary/10 transition-all duration-150 active:scale-[0.98] font-semibold text-sm sm:text-base px-8 py-3.5 rounded-lg inline-flex items-center justify-center tracking-wide"
+                className="border border-primary text-primary hover:bg-primary/10 transition-all duration-150 active:scale-[0.98] font-semibold text-sm sm:text-base px-8 py-3.5 min-h-[44px] rounded-lg inline-flex items-center justify-center tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 WhatsApp Me
               </a>

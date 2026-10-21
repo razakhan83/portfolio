@@ -40,7 +40,7 @@ export default function Contact({ settings }: ContactProps) {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-surface text-deep font-semibold text-base sm:text-lg px-8 py-4 rounded-lg hover:bg-background transition-all duration-150 active:scale-[0.98] inline-flex items-center justify-center gap-3 shadow-none tracking-wide"
+            className="bg-surface text-deep font-semibold text-base sm:text-lg px-8 py-4 min-h-[44px] rounded-lg hover:bg-background transition-all duration-150 active:scale-[0.98] inline-flex items-center justify-center gap-3 shadow-none tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-deep"
           >
             <WhatsAppIcon className="w-5 h-5 text-deep" />
             <span>Message on WhatsApp</span>
@@ -49,7 +49,7 @@ export default function Contact({ settings }: ContactProps) {
           {/* Clear Email Link */}
           <a
             href={emailHref}
-            className="text-background/90 hover:text-primary transition-colors text-base sm:text-lg font-medium inline-flex items-center justify-center gap-2.5 underline underline-offset-8 px-2 py-3"
+            className="text-background/90 hover:text-primary transition-colors text-base sm:text-lg font-medium inline-flex items-center justify-center gap-2.5 underline underline-offset-8 px-2 py-3 min-h-[44px] rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-deep"
             aria-label={`Send email to ${settings.email || "Ahmed Raza"}`}
           >
             <MailIcon className="w-5 h-5" />
@@ -58,7 +58,7 @@ export default function Contact({ settings }: ContactProps) {
         </div>
 
         {/* Social Icons Row in surface colour */}
-        <div className="pt-8 border-t border-background/20 w-full flex items-center gap-5 text-surface/75">
+        <div className="pt-8 border-t border-background/20 w-full flex items-center gap-2 sm:gap-4 text-surface/75">
           <span className="text-xs uppercase tracking-widest text-background/60 font-semibold mr-2">
             Socials
           </span>
@@ -67,7 +67,7 @@ export default function Contact({ settings }: ContactProps) {
               href={settings.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 hover:text-surface transition-colors duration-150 rounded"
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 hover:text-surface transition-colors duration-150 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-deep"
               aria-label="GitHub Profile"
             >
               <GitHubIcon className="w-5 h-5" />
@@ -78,7 +78,7 @@ export default function Contact({ settings }: ContactProps) {
               href={settings.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 hover:text-surface transition-colors duration-150 rounded"
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 hover:text-surface transition-colors duration-150 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-deep"
               aria-label="LinkedIn Profile"
             >
               <LinkedInIcon className="w-5 h-5" />
@@ -89,7 +89,7 @@ export default function Contact({ settings }: ContactProps) {
               href={settings.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 hover:text-surface transition-colors duration-150 rounded"
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 hover:text-surface transition-colors duration-150 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-deep"
               aria-label="WhatsApp Contact"
             >
               <WhatsAppIcon className="w-5 h-5" />
@@ -98,7 +98,7 @@ export default function Contact({ settings }: ContactProps) {
           {settings.email && (
             <a
               href={`mailto:${settings.email}`}
-              className="p-1.5 hover:text-surface transition-colors duration-150 rounded"
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 hover:text-surface transition-colors duration-150 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-deep"
               aria-label="Email Ahmed Raza"
             >
               <MailIcon className="w-5 h-5" />

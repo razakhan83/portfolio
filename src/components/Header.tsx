@@ -19,7 +19,7 @@ export default function Header({ wordmark, socials }: HeaderProps) {
         {/* Wordmark: left */}
         <Link
           href="/"
-          className="font-heading font-bold text-2xl tracking-tight inline-flex items-center gap-1 group"
+          className="font-heading font-bold text-2xl tracking-tight inline-flex items-center gap-1 group min-h-[44px] px-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label={`${wordmark.first} ${wordmark.rest} home`}
         >
           <span className="text-deep">{wordmark.first}</span>
@@ -27,13 +27,13 @@ export default function Header({ wordmark, socials }: HeaderProps) {
         </Link>
 
         {/* Social Icons: right (NO nav menu links) */}
-        <div className="flex items-center gap-4 text-deep">
+        <div className="flex items-center gap-1 sm:gap-2 text-deep">
           {socials.githubUrl && (
             <a
               href={socials.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1 hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
               aria-label="GitHub Profile"
             >
               <GitHubIcon className="w-5 h-5" />
@@ -44,7 +44,7 @@ export default function Header({ wordmark, socials }: HeaderProps) {
               href={socials.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1 hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
               aria-label="LinkedIn Profile"
             >
               <LinkedInIcon className="w-5 h-5" />
@@ -55,7 +55,7 @@ export default function Header({ wordmark, socials }: HeaderProps) {
               href={socials.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1 hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
               aria-label="WhatsApp Contact"
             >
               <WhatsAppIcon className="w-5 h-5" />
@@ -64,7 +64,7 @@ export default function Header({ wordmark, socials }: HeaderProps) {
           {socials.email && (
             <a
               href={`mailto:${socials.email}`}
-              className="p-1 hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2.5 hover:text-primary transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
               aria-label="Send Email"
             >
               <MailIcon className="w-5 h-5" />

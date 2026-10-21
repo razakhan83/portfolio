@@ -63,7 +63,7 @@ export default function Services({
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-primary text-[#FFFEF7] font-semibold text-sm sm:text-base px-7 py-3 rounded-lg hover:bg-deep transition-all duration-150 active:scale-[0.98] inline-flex items-center gap-2.5 shadow-none"
+                      className="bg-primary text-[#FFFEF7] font-semibold text-sm sm:text-base px-7 py-3 min-h-[44px] rounded-lg hover:bg-deep transition-all duration-150 active:scale-[0.98] inline-flex items-center justify-center gap-2.5 shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     >
                       <WhatsAppIcon className="w-5 h-5" />
                       <span>Inquire on WhatsApp</span>

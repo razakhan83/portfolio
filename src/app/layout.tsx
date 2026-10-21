@@ -29,7 +29,9 @@ export default async function RootLayout({
     <html lang="en" className={`${fontBody.variable} ${fontHeading.variable}`}>
       <body className="antialiased min-h-screen flex flex-col bg-background text-deep font-body">
         <Header wordmark={settings.wordmark} socials={socials} />
-        <div className="flex-1">{children}</div>
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
         <Footer wordmark={settings.wordmark} socials={socials} />
       </body>
     </html>

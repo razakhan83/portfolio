@@ -19,7 +19,7 @@ export default function TermsPage() {
         </p>
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-primary hover:text-deep transition-colors font-medium text-sm sm:text-base group"
+          className="inline-flex items-center gap-2 text-primary hover:text-deep transition-colors font-medium text-sm sm:text-base group min-h-[44px] px-2 py-2 -ml-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-150">
             &larr;

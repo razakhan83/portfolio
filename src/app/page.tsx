@@ -22,13 +22,13 @@ export default async function Home() {
   ]);
 
   return (
-    <main>
+    <>
       <Hero settings={settings} />
       <Skills skills={skills} />
       <Projects projects={projects} />
       <Services services={services} whatsappUrl={settings.whatsappUrl} />
       <Process processSteps={processSteps} />
       <Contact settings={settings} />
-    </main>
+    </>
   );
 }
