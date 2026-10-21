@@ -70,7 +70,7 @@ export function Tabs({
 
   return (
     <Context value={{ id, value, select, list }}>
-      <div className={`w-full max-w-md text-foreground ${className}`}>{children}</div>
+      <div className={`w-full text-deep ${className}`}>{children}</div>
     </Context>
   )
 }
@@ -101,14 +101,22 @@ export function TabsList({
       ref={list}
       role="tablist"
       onKeyDown={onKeyDown}
-      className={`flex gap-1 border-b border-border ${className}`}
+      className={`flex items-center gap-1 sm:gap-4 border-b border-border overflow-x-auto no-scrollbar pb-px ${className}`}
     >
       {children}
     </div>
   )
 }
 
-export function TabsTrigger({ value, children }: { value: string; children: ReactNode }) {
+export function TabsTrigger({
+  value,
+  className = "",
+  children,
+}: {
+  value: string
+  className?: string
+  children: ReactNode
+}) {
   const { id, value: active, select } = useTabs()
   const selected = value === active
   return (
@@ -121,14 +129,14 @@ export function TabsTrigger({ value, children }: { value: string; children: Reac
       aria-controls={selected ? `${id}-panel-${value}` : undefined}
       tabIndex={selected ? 0 : -1}
       onClick={() => select(value)}
-      className={`relative -mb-px cursor-pointer rounded-md px-3 pt-1.5 pb-2.5 text-sm font-medium whitespace-nowrap outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 ${
-        selected ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-      }`}
+      className={`relative -mb-px cursor-pointer rounded-md px-3 sm:px-4 py-2.5 min-h-[44px] inline-flex items-center justify-center text-sm sm:text-base font-medium whitespace-nowrap outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary ${
+        selected ? "text-deep font-semibold" : "text-muted hover:text-deep"
+      } ${className}`}
     >
       {children}
       {selected && (
         <ViewTransition name={`${id}-underline`} share="vt-move vt-quick" default="none">
-          <span className="absolute inset-x-0 -bottom-[0.5px] h-0.5 rounded-full bg-foreground" />
+          <span className="absolute inset-x-0 -bottom-[1px] h-[2px] rounded-full bg-primary" />
         </ViewTransition>
       )}
     </button>
@@ -160,7 +168,7 @@ export function TabsContent({
         id={`${id}-panel-${value}`}
         aria-labelledby={`${id}-tab-${value}`}
         tabIndex={0}
-        className={`-mx-1 h-40 overflow-hidden rounded-md px-1 pt-5 text-sm outline-none focus-visible:ring-3 focus-visible:ring-ring/50 ${className}`}
+        className={`pt-8 text-deep outline-none focus-visible:ring-2 focus-visible:ring-primary ${className}`}
       >
         {children}
       </div>
