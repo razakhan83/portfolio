@@ -25,10 +25,11 @@ Work top to bottom. One task at a time. Every task ends with: `npm run build` cl
 - [x] TASK-016: /privacy and /terms pages with the PRD text, same header and footer, Morph Page Transition crossfade between public routes. Acceptance: both pages render, one h1 each.
 - [x] TASK-017: Animation pass: heading wipe reveals (Motion whileInView, once), fade-up sections with small stagger, custom teal cursor dot (pointer-fine only, native cursor stays visible), hover states 100 to 150ms ease-out, buttons active:scale-[0.98], prefers-reduced-motion disables wipe, morph and cursor. Acceptance: no animation uses anything except transform and opacity.
 - [x] TASK-018: SEO, metadata and sharing: root metadata, opengraph-image.tsx, sitemap.ts, robots.ts, icon.svg, JSON-LD Person schema in page.tsx, Privacy/Terms metadata. Acceptance: meta tags, JSON-LD, sitemap, robots, OG image all present.
+- [x] TASK-019: Full QA of the public site on the production build: all sections, project dialogs, services tabs, animations, fallback test, routes, 404, 360px overflow, Lighthouse. Acceptance: all tests pass on production server.
 
 ## Phase 3: Admin auth
-- [ ] TASK-019: Login page `/admin/login`: email + password form (shadcn), zod validation, bcrypt check against the admins collection, JWT (AUTH_SECRET) in httpOnly, secure, sameSite=lax cookie, 7 days. Failed attempts limited (5 per 10 minutes per IP). Acceptance: correct login reaches /admin, wrong password shows a clear error.
-- [ ] TASK-019: Protection: middleware guards `/admin/*` (except login) and `/api/admin/*`; every admin server action and API route ALSO verifies the session server-side. `/admin` has robots noindex. Acceptance: logged out, /admin and /api/admin/upload both refuse; logged in, both work.
+- [ ] TASK-020: Login page `/admin/login`: email + password form (shadcn), zod validation, bcrypt check against the admins collection, JWT (AUTH_SECRET) in httpOnly, secure, sameSite=lax cookie, 7 days. Failed attempts limited (5 per 10 minutes per IP). Acceptance: correct login reaches /admin, wrong password shows a clear error.
+- [ ] TASK-021: Protection: middleware guards `/admin/*` (except login) and `/api/admin/*`; every admin server action and API route ALSO verifies the session server-side. `/admin` has robots noindex. Acceptance: logged out, /admin and /api/admin/upload both refuse; logged in, both work.
 
 ## Phase 4: Admin panel
 - [ ] TASK-020: Admin shell: shadcn sidebar (Dashboard, Projects, Skills, Services, Settings, View Site, Logout), top bar with page title and admin email, collapses to a top bar with menu button at 360px. Dashboard: stat cards (total projects, published projects, skills count) + quick links. Acceptance: shell renders, dashboard numbers match the database.

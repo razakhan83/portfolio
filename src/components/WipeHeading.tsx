@@ -27,24 +27,30 @@ export default function WipeHeading({
     }
 
     const runWipe = async () => {
-      // 1. Expand block across heading (scaleX 0 -> 1, origin left)
+      const blockEl = scope.current?.querySelector(".wipe-block") as HTMLElement | null;
+
+      // 1. Set origin to left, expand block across heading
+      if (blockEl) blockEl.style.transformOrigin = "0% 50%";
       await animate(
         ".wipe-block",
-        { scaleX: 1, transformOrigin: "left" },
+        { scaleX: 1 },
         { duration: 0.28, ease: [0.16, 1, 0.3, 1] }
       );
+
       // 2. Reveal text underneath
       animate(".wipe-text", { opacity: 1 }, { duration: 0.01 });
-      // 3. Contract block away to the right (scaleX 1 -> 0, origin right)
+
+      // 3. Set origin to right, contract block away
+      if (blockEl) blockEl.style.transformOrigin = "100% 50%";
       await animate(
         ".wipe-block",
-        { scaleX: 0, transformOrigin: "right" },
+        { scaleX: 0 },
         { duration: 0.28, ease: [0.16, 1, 0.3, 1] }
       );
     };
 
     runWipe();
-  }, [isInView, shouldReduceMotion, animate]);
+  }, [isInView, shouldReduceMotion, animate, scope]);
 
   // Strip trailing full stop if already provided so we can format the teal accent
   const cleanTitle = title.endsWith(".") ? title.slice(0, -1) : title;
@@ -67,7 +73,7 @@ export default function WipeHeading({
             className="wipe-block absolute inset-0 bg-primary z-10 pointer-events-none"
             style={{
               transform: "scaleX(0)",
-              transformOrigin: "left",
+              transformOrigin: "0% 50%",
             }}
           />
         )}
