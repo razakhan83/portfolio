@@ -10,7 +10,7 @@ Work top to bottom. One task at a time. Every task ends with: `npm run build` cl
 
 ## Phase 1: Database and content layer
 - [x] TASK-005: MongoDB Atlas connection in `src/lib/db.ts` (cached connection, no new connection per request). Mongoose models for: settings, projects, skills, services, processSteps, admins (schemas in ARCHITECTURE.md). Acceptance: a script connects and lists collections.
-- [ ] TASK-006: Seed script `scripts/seed.ts`: loads ALL content from the PRD.md Appendix and creates the admin user from `ADMIN_EMAIL` / `ADMIN_PASSWORD` env (bcrypt hash, cost 12). Safe to run twice (upsert, no duplicates). Acceptance: after seeding, every collection has the PRD content.
+- [x] TASK-006: Seed script `scripts/seed.ts`: loads ALL content from the PRD.md Appendix and creates the admin user from `ADMIN_EMAIL` / `ADMIN_PASSWORD` env (bcrypt hash, cost 12). Safe to run twice (upsert, no duplicates). Acceptance: after seeding, every collection has the PRD content.
 - [ ] TASK-007: Content data layer `src/lib/content.ts`: one function per section (getSettings, getProjects, getSkills, getServices, getProcessSteps), React `cache()` + cache tag `portfolio-content`. If the database is empty, return the PRD Appendix defaults so the page never renders blank. Acceptance: a server page prints the seeded hero title and 6 project titles.
 
 ## Phase 2: Landing page (public site)
