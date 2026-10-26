@@ -1,9 +1,8 @@
 "use client";
 
-import { motion } from "motion/react";
 import type { ProcessStepItem } from "@/lib/content";
 import WipeHeading from "./WipeHeading";
-import { staggerContainer, fadeInUp } from "@/lib/motion";
+import { Reveal } from "@/components/gsap/reveal";
 
 export interface ProcessProps {
   processSteps: ProcessStepItem[];
@@ -19,17 +18,11 @@ export default function Process({ processSteps }: ProcessProps) {
         <WipeHeading title="Process." />
 
         {/* 4 columns on wide desktop, 2 on tablet, stacked on mobile with stagger */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {sortedSteps.map((step, idx) => (
-            <motion.div
+            <Reveal
               key={step.id || idx}
-              variants={fadeInUp}
+              delay={idx * 0.1}
               className="border-t border-border pt-6 flex flex-col items-start"
             >
               {/* Big step number in primary teal Cabinet Grotesk */}
@@ -46,9 +39,9 @@ export default function Process({ processSteps }: ProcessProps) {
               <p className="text-muted text-sm sm:text-base leading-relaxed">
                 {step.text}
               </p>
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

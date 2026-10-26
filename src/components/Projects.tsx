@@ -1,10 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
 import type { ProjectItem } from "@/lib/content";
 import ProjectCard from "./ProjectCard";
 import WipeHeading from "./WipeHeading";
-import { staggerContainer, fadeInUp } from "@/lib/motion";
+import { Reveal } from "@/components/gsap/reveal";
 
 export interface ProjectsProps {
   projects: ProjectItem[];
@@ -20,19 +19,17 @@ export default function Projects({ projects }: ProjectsProps) {
         <WipeHeading title="Projects." />
 
         {/* 2-column desktop, 1-column mobile card grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
           {sortedProjects.map((project, idx) => (
-            <motion.div key={project.id || idx} variants={fadeInUp} className="h-full">
+            <Reveal
+              key={project.id || idx}
+              delay={(idx % 2) * 0.1}
+              className="h-full"
+            >
               <ProjectCard project={project} />
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

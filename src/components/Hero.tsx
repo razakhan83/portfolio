@@ -1,16 +1,59 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "motion/react";
 import type { SiteSettings } from "@/lib/content";
 import HeroIllustration from "./HeroIllustration";
 import StatNumberFlip from "./StatNumberFlip";
 import { heroContainer, heroItem, heroIllustration } from "@/lib/motion";
+import { gsap, SplitText, useGSAP } from "@/lib/gsap";
 
 export interface HeroProps {
   settings: SiteSettings;
 }
 
 export default function Hero({ settings }: HeroProps) {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useGSAP(
+    () => {
+      if (!titleRef.current) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const parentSplit = new SplitText(titleRef.current, {
+          type: "lines",
+          linesClass: "overflow-hidden",
+        });
+
+        const childSplit = new SplitText(parentSplit.lines, {
+          type: "lines",
+          linesClass: "inline-block",
+        });
+
+        gsap.from(childSplit.lines, {
+          yPercent: 100,
+          duration: 1,
+          ease: "power4.out",
+          stagger: 0.08,
+        });
+
+        return () => {
+          childSplit.revert();
+          parentSplit.revert();
+        };
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        // Elements shown instantly in their final state
+      });
+
+      return () => mm.revert();
+    },
+    { scope: titleRef, dependencies: [settings.heroTitle] }
+  );
+
   // Format H1 so the owner's name is highlighted in primary teal per DESIGN.md
   const renderHeroTitle = (title: string) => {
     const match = title.match(/^(.*?)(Ahmed)(\.?)(.*)$/i);
@@ -53,13 +96,13 @@ export default function Hero({ settings }: HeroProps) {
               {settings.heroEyebrow}
             </motion.span>
 
-            {/* 2. H1 */}
-            <motion.h1
-              variants={heroItem}
+            {/* 2. H1 with GSAP SplitText masked reveal */}
+            <h1
+              ref={titleRef}
               className="font-heading font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-6"
             >
               {renderHeroTitle(settings.heroTitle)}
-            </motion.h1>
+            </h1>
 
             {/* 3. Paragraph */}
             <motion.p
