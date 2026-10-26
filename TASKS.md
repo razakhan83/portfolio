@@ -51,6 +51,7 @@ Work top to bottom. One task at a time. Every task ends with: `npm run build` cl
   - [ ] No secrets in git history, `.env.local` not committed
 - [ ] TASK-029: Deploy: connect the repo to Vercel, set all env vars from .env.example in Vercel, deploy, run the seed against production Atlas once, set NEXT_PUBLIC_SITE_URL. Acceptance: live URL serves the portfolio, admin login works on production, one content edit in production admin appears on the live landing page.
 - [x] TASK-030: GSAP Integration: client-safe module (src/lib/gsap.ts) registering useGSAP, ScrollTrigger, and SplitText; Reveal scroll component (src/components/gsap/reveal.tsx) with matchMedia and prefers-reduced-motion; Hero headline masked SplitText line animation on page load. Acceptance: build clean, SplitText and scroll reveals active on localhost, Motion components untouched.
+- [x] TASK-031: Replace public footer with Halftone Wordmark Footer (src/components/ui/halftone-wordmark-footer.tsx, PublicFooter wrapper, Back to top, reduced-motion support). Acceptance: build clean, renders on all public routes, hidden on /admin.
 
 ## Later (not in v1, do not build now)
 - Blog, analytics, contact form storage, multi-language, dark mode. Only when the owner asks.

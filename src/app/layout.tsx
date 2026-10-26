@@ -3,7 +3,7 @@ import { fontBody, fontHeading } from "./fonts";
 import "./globals.css";
 import { getSettings } from "@/lib/content";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import PublicFooter from "@/components/PublicFooter";
 import Cursor from "@/components/Cursor";
 import { RouteTransition } from "@/components/morph/route-transition";
 import { SkipOnScroll } from "@/components/morph/skip-on-scroll";
@@ -68,7 +68,7 @@ export default async function RootLayout({
         <main id="main-content" className="flex-1">
           <RouteTransition>{children}</RouteTransition>
         </main>
-        <Footer wordmark={settings.wordmark} socials={socials} />
+        <PublicFooter />
       </body>
     </html>
   );
