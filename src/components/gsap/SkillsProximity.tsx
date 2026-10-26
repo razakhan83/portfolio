@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { demoContent } from "@/lib/demo-content";
+import { SectionHeading, StrokeIcon } from "./SvgMarks";
 
 export function SkillsProximity() {
   const containerRef = useRef<HTMLElement | null>(null);
@@ -44,7 +45,6 @@ export function SkillsProximity() {
 
           if (distance < proximityRadius) {
             const factor = 1 - distance / proximityRadius;
-            // Proximity scale up to ~1.18x and slight upward lift
             setters.scale(1 + factor * 0.16);
             setters.y(-factor * 8);
             setters.borderColor(factor > 0.4 ? "#008080" : "rgba(245, 245, 220, 0.2)");
@@ -83,17 +83,11 @@ export function SkillsProximity() {
       id="skills"
       className="py-24 sm:py-32 px-6 sm:px-10 lg:px-16 max-w-7xl mx-auto border-t border-[#F5F5DC]/10"
     >
-      <div className="mb-14">
-        <span className="text-xs uppercase tracking-widest text-[#008080] font-heading font-semibold block mb-3">
-          Expertise & Stack
-        </span>
-        <h2 className="font-heading font-bold text-3xl sm:text-5xl text-[#F5F5DC] tracking-tight mb-4">
-          {demoContent.skills.heading}
-        </h2>
-        <p className="font-body text-[#F5F5DC]/60 max-w-xl text-base sm:text-lg">
-          {demoContent.skills.subline}
-        </p>
-      </div>
+      <SectionHeading
+        eyebrow="Expertise & Stack"
+        title={demoContent.skills.heading}
+        subline={demoContent.skills.subline}
+      />
 
       {/* Proximity Grid */}
       <div
@@ -102,17 +96,23 @@ export function SkillsProximity() {
       >
         {demoContent.skills.items.map((skill, index) => (
           <div
-            key={skill}
+            key={skill.name}
             ref={(el) => {
               tileRefs.current[index] = el;
             }}
-            className="p-5 sm:p-6 rounded-2xl bg-[#0A0F0D] border border-[#F5F5DC]/10 transition-colors duration-200 flex flex-col justify-between min-h-[110px] will-change-transform"
+            className="p-5 sm:p-6 rounded-2xl bg-[#0A0F0D] border border-[#F5F5DC]/10 transition-colors duration-200 flex flex-col justify-between min-h-[130px] will-change-transform group hover:border-[#008080]/50"
           >
-            <span className="text-xs text-[#F5F5DC]/40 font-mono">
-              0{index + 1}
-            </span>
-            <span className="font-heading font-semibold text-base sm:text-lg text-[#F5F5DC] tracking-wide">
-              {skill}
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-[#F5F5DC]/40 font-mono">
+                0{index + 1}
+              </span>
+              <StrokeIcon
+                name={skill.icon}
+                className="w-5 h-5 text-[#008080] group-hover:scale-110 transition-transform duration-200"
+              />
+            </div>
+            <span className="font-heading font-semibold text-base sm:text-lg text-[#F5F5DC] tracking-wide mt-4">
+              {skill.name}
             </span>
           </div>
         ))}

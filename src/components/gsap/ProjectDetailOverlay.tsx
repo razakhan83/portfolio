@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useCallback } from "react";
 import { gsap } from "@/lib/gsap";
+import Image from "next/image";
 import { DemoProject } from "@/lib/demo-content";
 import { MagneticButton } from "./MagneticButton";
 
@@ -210,6 +211,19 @@ export function ProjectDetailOverlay({
             <span className="text-xl leading-none">&times;</span>
           </button>
         </div>
+
+        {/* Large Cover Image */}
+        {project?.image && (
+          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8 border border-[#F5F5DC]/15 bg-[#0A0F0D]">
+            <Image
+              src={project.image}
+              alt={`${project.title} live interface preview`}
+              fill
+              sizes="(max-width: 896px) 100vw, 896px"
+              className="object-cover"
+            />
+          </div>
+        )}
 
         {/* Title */}
         <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-6">

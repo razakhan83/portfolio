@@ -3,6 +3,7 @@ export interface DemoProject {
   title: string;
   category: string;
   year: string;
+  image: string;
   summary: string;
   overview: string;
   stack: string[];
@@ -15,6 +16,7 @@ export interface DemoProcessStep {
   step: string;
   title: string;
   desc: string;
+  iconName: "bracket" | "layers" | "terminal" | "rocket";
 }
 
 export interface DemoLandingContent {
@@ -25,19 +27,28 @@ export interface DemoLandingContent {
   };
   hero: {
     displayLines: string[];
+    rotatingWords: string[];
     subline: string;
+    visual: string;
     primaryCta: { label: string; href: string };
     secondaryCta: { label: string; href: string };
   };
+  marquee: string[];
   skills: {
     heading: string;
     subline: string;
-    items: string[];
+    items: { name: string; icon: string }[];
   };
   work: {
     heading: string;
     subline: string;
     projects: DemoProject[];
+  };
+  visualStrip: {
+    image: string;
+    caption: string;
+    quote: string;
+    subtext: string;
   };
   process: {
     heading: string;
@@ -69,11 +80,13 @@ export const demoContent: DemoLandingContent = {
   },
   hero: {
     displayLines: [
-      "Building fast web stores",
+      "Building high-impact",
       "and digital products that scale.",
     ],
+    rotatingWords: ["Websites", "Stores", "Dashboards", "Platforms"],
     subline:
       "Ahmed Raza · MERN / Next.js Developer crafting high-performance frontends, robust full-stack platforms, and smooth digital interactions.",
+    visual: "/images/hero-visual.webp",
     primaryCta: {
       label: "Explore Work",
       href: "#work",
@@ -83,26 +96,36 @@ export const demoContent: DemoLandingContent = {
       href: "#contact",
     },
   },
+  marquee: [
+    "Next.js 16",
+    "E-Commerce",
+    "High Conversion",
+    "GSAP Motion",
+    "Full Stack MERN",
+    "TypeScript",
+    "Fast Edge Delivery",
+    "Tailwind Architecture",
+  ],
   skills: {
     heading: "Core Stack & Technologies",
     subline: "Move your cursor across the tiles to inspect tool fluency and stack proximity.",
     items: [
-      "Next.js 16",
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "GSAP Animations",
-      "ScrollTrigger",
-      "RESTful APIs",
-      "Redux Toolkit",
-      "PostgreSQL",
-      "Git & GitHub",
-      "Docker",
-      "Web Performance",
-      "E-Commerce UX",
+      { name: "Next.js 16", icon: "terminal" },
+      { name: "React 19", icon: "atom" },
+      { name: "TypeScript", icon: "brackets" },
+      { name: "Tailwind CSS", icon: "brush" },
+      { name: "Node.js", icon: "server" },
+      { name: "Express.js", icon: "layers" },
+      { name: "MongoDB", icon: "database" },
+      { name: "GSAP Animations", icon: "sparkle" },
+      { name: "ScrollTrigger", icon: "scroll" },
+      { name: "RESTful APIs", icon: "cloud" },
+      { name: "Redux Toolkit", icon: "cpu" },
+      { name: "PostgreSQL", icon: "table" },
+      { name: "Git & CI/CD", icon: "git" },
+      { name: "Docker", icon: "box" },
+      { name: "Web Performance", icon: "gauge" },
+      { name: "E-Commerce UX", icon: "cart" },
     ],
   },
   work: {
@@ -114,6 +137,7 @@ export const demoContent: DemoLandingContent = {
         title: "Storefront Engine",
         category: "Next.js / E-Commerce",
         year: "2026",
+        image: "/images/project-1.webp",
         summary:
           "Modular headless e-commerce frontend built with edge rendering, optimistic cart updates, and instant search.",
         overview:
@@ -132,6 +156,7 @@ export const demoContent: DemoLandingContent = {
         title: "Stock & Order Hub",
         category: "MERN Stack / System",
         year: "2025",
+        image: "/images/project-2.webp",
         summary:
           "Multi-location warehouse inventory control system with real-time stock allocation and supplier dispatching.",
         overview:
@@ -150,6 +175,7 @@ export const demoContent: DemoLandingContent = {
         title: "Store Analytics",
         category: "Analytics / Dashboard",
         year: "2025",
+        image: "/images/project-3.webp",
         summary:
           "Conversion funnel analyzer tracking visitor sessions, cart drop-off rates, and peak sales velocity.",
         overview:
@@ -168,6 +194,7 @@ export const demoContent: DemoLandingContent = {
         title: "Fast Checkout System",
         category: "Full Stack / Payments",
         year: "2026",
+        image: "/images/project-4.webp",
         summary:
           "Frictionless one-page checkout module with webhook payment validation and automated order receipts.",
         overview:
@@ -186,6 +213,7 @@ export const demoContent: DemoLandingContent = {
         title: "Product Matrix Core",
         category: "React / Architecture",
         year: "2025",
+        image: "/images/project-2.webp",
         summary:
           "Dynamic product option configurator handling complex variant combinations with instant UI updates.",
         overview:
@@ -201,6 +229,12 @@ export const demoContent: DemoLandingContent = {
       },
     ],
   },
+  visualStrip: {
+    image: "/images/about-visual.webp",
+    caption: "Precision & Craft",
+    quote: "From architecture sketches to high-performance production code.",
+    subtext: "Every interface is built for speed, conversion, and effortless user flow.",
+  },
   process: {
     heading: "Engineering Process",
     subline: "A structured, reliable workflow from requirement discovery to production launch.",
@@ -209,21 +243,25 @@ export const demoContent: DemoLandingContent = {
         step: "01",
         title: "Discovery & Architecture",
         desc: "Clarifying business outcomes, user paths, API contracts, and database schema requirements before writing code.",
+        iconName: "bracket",
       },
       {
         step: "02",
         title: "Design System & Prototyping",
         desc: "Setting up design tokens, semantic components, layout grids, and interactive states for consistency.",
+        iconName: "layers",
       },
       {
         step: "03",
         title: "Full-Stack Implementation",
         desc: "Developing typed frontend interfaces, server endpoints, business logic validation, and database operations.",
+        iconName: "terminal",
       },
       {
         step: "04",
         title: "QA, Performance & Release",
         desc: "Auditing Core Web Vitals, verifying cross-browser reliability, tuning build bundles, and deploying to production.",
+        iconName: "rocket",
       },
     ],
   },

@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useRef } from "react";
+import Image from "next/image";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { demoContent, DemoProject } from "@/lib/demo-content";
+import { SectionHeading } from "./SvgMarks";
 
 export interface SelectedWorkProps {
   onSelectProject: (project: DemoProject) => void;
@@ -22,11 +24,12 @@ export function SelectedWork({ onSelectProject }: SelectedWorkProps) {
   useGSAP(
     () => {
       const isReduced =
+        typeof window !== "undefined" &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       if (isReduced || !railRef.current) return;
 
-      // Modelled on Timeline Clear and Rebuild (demos.gsap.com/demo/timeline-clear-and-rebuild)
+      // Modelled on Timeline Clear and Rebuild
       const buildLoop = () => {
         if (!railRef.current) return;
 
@@ -48,7 +51,7 @@ export function SelectedWork({ onSelectProject }: SelectedWorkProps) {
         // 4. Build smooth infinite loop timeline with consistent speed
         loopTweenRef.current = gsap.to(railRef.current, {
           x: -singleSetWidth,
-          duration: Math.max(22, singleSetWidth / 65),
+          duration: Math.max(26, singleSetWidth / 65),
           ease: "none",
           repeat: -1,
         });
@@ -94,18 +97,12 @@ export function SelectedWork({ onSelectProject }: SelectedWorkProps) {
       id="work"
       className="py-24 sm:py-32 overflow-hidden border-t border-[#F5F5DC]/10"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <span className="text-xs uppercase tracking-widest text-[#008080] font-heading font-semibold block mb-3">
-            Portfolio
-          </span>
-          <h2 className="font-heading font-bold text-3xl sm:text-5xl text-[#F5F5DC] tracking-tight">
-            {demoContent.work.heading}
-          </h2>
-        </div>
-        <p className="font-body text-[#F5F5DC]/60 max-w-md text-sm sm:text-base">
-          {demoContent.work.subline}
-        </p>
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-12">
+        <SectionHeading
+          eyebrow="Portfolio"
+          title={demoContent.work.heading}
+          subline={demoContent.work.subline}
+        />
       </div>
 
       {/* Looped Rail Viewport */}
@@ -130,40 +127,54 @@ export function SelectedWork({ onSelectProject }: SelectedWorkProps) {
                   onSelectProject(project);
                 }
               }}
-              className="group relative w-[320px] sm:w-[420px] shrink-0 rounded-2xl bg-[#0A0F0D] border border-[#F5F5DC]/15 p-6 sm:p-8 flex flex-col justify-between hover:border-[#008080] transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#008080]"
+              className="group relative w-[340px] sm:w-[440px] shrink-0 rounded-2xl bg-[#0A0F0D] border border-[#F5F5DC]/15 overflow-hidden flex flex-col justify-between hover:border-[#008080] transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#008080]"
             >
-              <div>
-                <div className="flex items-center justify-between text-xs font-mono text-[#F5F5DC]/50 mb-6">
+              {/* Cover Image with smooth scale-up on hover */}
+              <div className="relative w-full aspect-[16/10] overflow-hidden bg-[#0A0F0D]">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} live interface preview`}
+                  fill
+                  sizes="440px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F0D] via-transparent to-transparent opacity-80" />
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-[#F5F5DC]/80 bg-[#0A0F0D]/60 backdrop-blur-sm px-3 py-1.5 rounded-full border border-[#F5F5DC]/10">
                   <span className="text-[#008080] uppercase tracking-wider font-semibold font-heading">
                     {project.category}
                   </span>
                   <span>{project.year}</span>
                 </div>
-
-                <h3 className="font-heading font-bold text-xl sm:text-2xl text-[#F5F5DC] mb-3 group-hover:text-[#008080] transition-colors">
-                  {project.title}
-                </h3>
-
-                <p className="font-body text-sm sm:text-base text-[#F5F5DC]/70 line-clamp-3 leading-relaxed mb-6">
-                  {project.summary}
-                </p>
               </div>
 
-              <div>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.stack.slice(0, 3).map((s) => (
-                    <span
-                      key={s}
-                      className="text-xs font-mono px-2.5 py-1 rounded-md bg-[#F5F5DC]/5 border border-[#F5F5DC]/10 text-[#F5F5DC]/70"
-                    >
-                      {s}
-                    </span>
-                  ))}
+              {/* Panel Content */}
+              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="font-heading font-bold text-xl sm:text-2xl text-[#F5F5DC] mb-3 group-hover:text-[#008080] transition-colors">
+                    {project.title}
+                  </h3>
+
+                  <p className="font-body text-sm sm:text-base text-[#F5F5DC]/70 line-clamp-2 leading-relaxed mb-6">
+                    {project.summary}
+                  </p>
                 </div>
 
-                <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-heading font-semibold text-[#008080] group-hover:translate-x-1 transition-transform">
-                  <span>View Case Study</span>
-                  <span>&rarr;</span>
+                <div>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.stack.slice(0, 3).map((s) => (
+                      <span
+                        key={s}
+                        className="text-xs font-mono px-2.5 py-1 rounded-md bg-[#F5F5DC]/5 border border-[#F5F5DC]/10 text-[#F5F5DC]/70"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-heading font-semibold text-[#008080] group-hover:translate-x-1.5 transition-transform duration-200">
+                    <span>View Case Study</span>
+                    <span>&rarr;</span>
+                  </div>
                 </div>
               </div>
             </div>
